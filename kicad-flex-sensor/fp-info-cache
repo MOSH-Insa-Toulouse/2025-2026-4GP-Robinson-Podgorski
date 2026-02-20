@@ -1,4 +1,4 @@
-27251874282638369
+27255417475808513
 Arduino_MountingHole
 MountingHole_1.2mm
 Mounting Hole 2.1mm, no annular
@@ -107926,6 +107926,13 @@ Bluetooth_empreinte
 4
 4
 graphite_empreinte
+Capteur
+
+
+0
+2
+2
+graphite_empreinte
 Encodeur_rotatoire
 
 
@@ -107939,3 +107946,10 @@ OLED
 0
 4
 4
+graphite_empreinte
+PDIP-8_N
+
+
+0
+8
+8
