@@ -1223,23 +1223,25 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 0 0 0)
+			(property "Reference" "Bluetooth"
+				(at 11.43 0.6351 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" ""
-				(at 0 0 0)
+			(property "Value" "~"
+				(at 11.43 -1.9049 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "graphite_empreinte:Bluetooth_empreinte"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1357,23 +1359,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 0 0 0)
+			(property "Reference" "Capteur"
+				(at 0 11.43 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" ""
-				(at 0 0 0)
+			(property "Value" "~"
+				(at 0 8.89 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "graphite_empreinte:Capteur"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1400,20 +1402,18 @@
 					(hide yes)
 				)
 			)
-			(symbol "Capteur_0_1"
+			(symbol "Capteur_1_1"
 				(rectangle
 					(start -7.62 6.35)
 					(end 7.62 -6.35)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
-			)
-			(symbol "Capteur_1_1"
 				(pin passive line
 					(at 10.16 2.54 180)
 					(length 2.54)
@@ -1457,7 +1457,7 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U3"
+			(property "Reference" "Encodeur"
 				(at 8.89 1.2701 0)
 				(effects
 					(font
@@ -1614,25 +1614,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 23.2156 9.1186 0)
+			(property "Reference" "AOP"
+				(at 27.94 10.16 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
 				)
 			)
 			(property "Value" "LTC1050CN8"
-				(at 22.5806 6.5786 0)
+				(at 27.94 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
 				)
 			)
-			(property "Footprint" "LTC1050CN8:PDIP-8_N"
+			(property "Footprint" "graphite_empreinte:PDIP-8_N"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1795,30 +1793,6 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 48.26 5.08) (xy 7.62 5.08)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 48.26 -12.7) (xy 48.26 5.08)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
 				(pin no_connect line
 					(at 0 0 0)
 					(length 7.62)
@@ -1964,29 +1938,57 @@
 					)
 				)
 			)
+			(symbol "LTC1050CN8_1_0"
+				(polyline
+					(pts
+						(xy 48.26 5.08) (xy 7.62 5.08)
+					)
+					(stroke
+						(width 0.1524)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy 48.26 -12.7) (xy 48.26 5.08)
+					)
+					(stroke
+						(width 0.1524)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
 			(embedded_fonts no)
 		)
 		(symbol "Graphite_symbol:OLED"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 0 0 0)
+			(property "Reference" "Screen"
+				(at 10.16 1.2701 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" ""
-				(at 0 0 0)
+			(property "Value" "~"
+				(at 10.16 -1.2699 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "graphite_empreinte:OLED"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2104,23 +2106,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 0 0 0)
+			(property "Reference" "Potar"
+				(at 0 11.43 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" ""
-				(at 0 0 0)
+			(property "Value" "~"
+				(at 0 8.89 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Package_DIP:DIP-8_W7.62mm_LongPads"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2162,7 +2164,7 @@
 				(pin passive line
 					(at -10.16 3.81 0)
 					(length 2.54)
-					(name "SS"
+					(name "CS"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2198,7 +2200,7 @@
 				(pin passive line
 					(at -10.16 -1.27 0)
 					(length 2.54)
-					(name "MOSI"
+					(name "SDI/SDO"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2216,7 +2218,7 @@
 				(pin power_in line
 					(at -10.16 -3.81 0)
 					(length 2.54)
-					(name "GND"
+					(name "Vss"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2234,7 +2236,7 @@
 				(pin power_in line
 					(at 10.16 3.81 180)
 					(length 2.54)
-					(name "VCC"
+					(name "VDD"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2252,7 +2254,7 @@
 				(pin power_in line
 					(at 10.16 1.27 180)
 					(length 2.54)
-					(name "GND"
+					(name "P0B"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2288,7 +2290,7 @@
 				(pin power_in line
 					(at 10.16 -3.81 180)
 					(length 2.54)
-					(name "VCC"
+					(name "P0A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2908,12 +2910,6 @@
 		(uuid "2d83981a-73df-4f22-96d0-8f5e0e06e39b")
 	)
 	(junction
-		(at 116.84 91.44)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2ecadb5f-fa95-4a91-a33a-cbe63b042aba")
-	)
-	(junction
 		(at 31.75 46.99)
 		(diameter 1.016)
 		(color 0 0 0 0)
@@ -2924,6 +2920,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "47f7c9f9-7cfb-40d4-bda3-76d542b32bc1")
+	)
+	(junction
+		(at 86.36 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4808317c-e73d-4109-95e7-be59903197ab")
 	)
 	(junction
 		(at 219.71 111.76)
@@ -2974,10 +2976,10 @@
 		(uuid "a2923596-008b-4916-bd67-8eaf412d813d")
 	)
 	(junction
-		(at 86.36 95.25)
+		(at 114.3 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "bb15c5fd-bd52-430f-8855-fb3288a716ac")
+		(uuid "c9324ba9-6d97-4050-b9d3-5bb100b42bc8")
 	)
 	(junction
 		(at 86.36 74.93)
@@ -3151,16 +3153,6 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 95.25) (xy 86.36 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "215cbbb0-be2a-472a-a175-64b88b85e445")
-	)
-	(wire
-		(pts
 			(xy 86.36 33.02) (xy 86.36 53.34)
 		)
 		(stroke
@@ -3251,7 +3243,17 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 91.44) (xy 116.84 96.52)
+			(xy 113.03 88.9) (xy 114.3 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38106b4b-1f21-44d3-a60c-43c2a2ae332a")
+	)
+	(wire
+		(pts
+			(xy 123.19 83.82) (xy 123.19 96.52)
 		)
 		(stroke
 			(width 0)
@@ -3491,16 +3493,6 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 83.82) (xy 116.84 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "68c8b0f5-5871-4854-9f22-f6e1233f8815")
-	)
-	(wire
-		(pts
 			(xy 88.9 50.8) (xy 92.71 50.8)
 		)
 		(stroke
@@ -3581,16 +3573,6 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 95.25) (xy 86.36 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "883f1289-acaa-45e3-8c09-ee3d75894a26")
-	)
-	(wire
-		(pts
 			(xy 86.36 91.44) (xy 86.36 95.25)
 		)
 		(stroke
@@ -3598,6 +3580,16 @@
 			(type default)
 		)
 		(uuid "88fb23cc-72d7-4018-ac98-f478a9059913")
+	)
+	(wire
+		(pts
+			(xy 86.36 95.25) (xy 86.36 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89617bc6-c953-405d-b48c-cb61fcc58b51")
 	)
 	(wire
 		(pts
@@ -3711,16 +3703,6 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 83.82) (xy 116.84 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9ee98d59-847a-42bb-805a-d4f63f25ed00")
-	)
-	(wire
-		(pts
 			(xy 219.71 106.68) (xy 219.71 111.76)
 		)
 		(stroke
@@ -3821,6 +3803,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 91.44) (xy 114.3 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bbaa647b-f43a-415e-9e30-cb159d27a3cc")
+	)
+	(wire
+		(pts
 			(xy 62.23 34.29) (xy 64.77 34.29)
 		)
 		(stroke
@@ -3911,6 +3903,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 95.25) (xy 86.36 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d0d36f76-38c1-47db-8d0c-8739b381acfe")
+	)
+	(wire
+		(pts
 			(xy 116.84 132.08) (xy 125.73 132.08)
 		)
 		(stroke
@@ -3928,6 +3930,16 @@
 			(type solid)
 		)
 		(uuid "d3042136-2605-44b2-aebb-5484a9c90933")
+	)
+	(wire
+		(pts
+			(xy 114.3 88.9) (xy 114.3 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d798afc5-87ac-4be8-9827-84fd23745ca6")
 	)
 	(wire
 		(pts
@@ -3951,13 +3963,13 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 86.36) (xy 114.3 95.25)
+			(xy 113.03 83.82) (xy 123.19 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e2662c87-b0ba-4d7b-9322-4f4699b1f870")
+		(uuid "e61a9ff9-7cbc-4a10-88a0-2c2da86837c8")
 	)
 	(wire
 		(pts
@@ -4001,16 +4013,6 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 91.44) (xy 116.84 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ec9a04f7-a832-4e49-8656-bcaa067fd319")
-	)
-	(wire
-		(pts
 			(xy 80.01 86.36) (xy 92.71 86.36)
 		)
 		(stroke
@@ -4021,7 +4023,7 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 96.52) (xy 88.9 96.52)
+			(xy 123.19 96.52) (xy 88.9 96.52)
 		)
 		(stroke
 			(width 0)
@@ -4108,6 +4110,16 @@
 			(type solid)
 		)
 		(uuid "fc39c32d-65b8-4d16-9db5-de89c54a1206")
+	)
+	(wire
+		(pts
+			(xy 113.03 91.44) (xy 114.3 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe7b1023-e8a0-44a5-9136-d2d0736129d4")
 	)
 	(wire
 		(pts
@@ -4753,6 +4765,28 @@
 			)
 		)
 	)
+	(global_label "A1"
+		(shape passive)
+		(at 114.3 86.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cfc10b00-47eb-4419-9a9c-954c0167aa18")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 118.6624 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "D10"
 		(shape passive)
 		(at 74.93 44.45 0)
@@ -4771,6 +4805,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A1"
+		(shape passive)
+		(at 21.59 62.23 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "dd8d0d69-2b1b-4eab-a8ed-66a8c0533a9b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 17.2276 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -5599,7 +5655,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "218abc79-7af0-48aa-93cd-437d34ff76b6")
-		(property "Reference" "U1"
+		(property "Reference" "Bluetooth1"
 			(at 116.84 53.9749 0)
 			(effects
 				(font
@@ -5659,7 +5715,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "U1")
+					(reference "Bluetooth1")
 					(unit 1)
 				)
 			)
@@ -5675,7 +5731,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "23318841-334e-4fb5-9692-f87a2f303b8c")
-		(property "Reference" "U6"
+		(property "Reference" "Capteur1"
 			(at 82.55 99.06 0)
 			(effects
 				(font
@@ -5727,7 +5783,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "U6")
+					(reference "Capteur1")
 					(unit 1)
 				)
 			)
@@ -5743,7 +5799,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3fb41036-9761-46b4-b651-b7695ee5852b")
-		(property "Reference" "U5"
+		(property "Reference" "AOP1"
 			(at 171.45 92.71 0)
 			(effects
 				(font
@@ -5924,7 +5980,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "U5")
+					(reference "AOP1")
 					(unit 1)
 				)
 			)
@@ -6203,7 +6259,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "91744a42-a7dd-46b1-b973-40d7a8a12d07")
-		(property "Reference" "U2"
+		(property "Reference" "Screen1"
 			(at 114.3 69.8499 0)
 			(effects
 				(font
@@ -6263,7 +6319,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "U2")
+					(reference "Screen1")
 					(unit 1)
 				)
 			)
@@ -6349,7 +6405,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9d38391a-a751-4807-add2-c0d037255df3")
-		(property "Reference" "U3"
+		(property "Reference" "Encodeur1"
 			(at 111.76 36.8299 0)
 			(effects
 				(font
@@ -6412,7 +6468,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "U3")
+					(reference "Encodeur1")
 					(unit 1)
 				)
 			)
@@ -6906,7 +6962,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f0d29a58-2b77-44dc-ba88-e8a290746959")
-		(property "Reference" "U4"
+		(property "Reference" "Potar1"
 			(at 102.87 76.2 0)
 			(effects
 				(font
@@ -6976,7 +7032,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "U4")
+					(reference "Potar1")
 					(unit 1)
 				)
 			)
