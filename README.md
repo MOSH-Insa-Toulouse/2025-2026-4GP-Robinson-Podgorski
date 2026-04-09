@@ -32,6 +32,8 @@ Dans ce contexte et dans le cadre de notre formation au Génie Physique de l'INS
 Le but final de ce capteur est de pouvoir le comparer avec un capteur de flexion industriel, et pouvoir répondre à la question :
 *Ce capteur peut-il remplacer un capteur flex industriel ?*
 
+Ce projet a été effectué en différentes étapes, qui sont documentées dans ce README
+
 # Livrables
 
 Ce projet contient 4 différents livrables :  
@@ -66,6 +68,18 @@ Pour la réalisation du circuit amplificateur transimpédance, nous avons utilis
 
 
 ### 1.2 Principe de fonctionnement du capteur graphite
+
+Les mines de crayon sont composées de fines particules de graphite liées entre elles par des liants argileux. Le capteur de flexion en graphite repose sur le dépôt de ces particules sur un papier. En effet, les traces de crayon peuvent être considérées comme des films minces conducteurs constitués d'un réseau granulaire désordonné de particules de graphite percolées sur le papier. Les mines de crayon plus dures contiennent une proportion plus élevée de liants argileux tandis que les mines plus tendres contiennent une proportion plus élevée de particules de graphite résultant à une résistance moins élevée.
+
+Face à une déformation mécanique, le réseau de ces particules est affecté, et la conduction électrique, qui s'effectue par le biais des contacts entre les particules voisines(effet tunnel), est donc fortement modifiée, augmentant ou diminuant la résistance du capteur :
+* Sous contraction, la distance entre les particules diminue, favorisant les contacts entre paritucles et diminuant la résistance.
+* Sous extension, la distance entre les particules augmente, rendant les contacts entre particules compliqués et augmentant donc la résistance.
+
+C'est ainsi que nous pouvons mesurer la variation de flexion grâce à la variation de résistance au sein du capteur.
+
+![Image du capteur graphite](IMAGE CAPTEUR GRAPHITE)
+
+
 
 ## 2. Simulation electronique du circuit amplificateur avec LTSpice
 
