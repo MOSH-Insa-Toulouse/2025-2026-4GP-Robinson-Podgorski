@@ -30,7 +30,7 @@
 
 # Contexte
 
-Dans un monde où la complexification de conception, de fabrication, d'utilisation et de réparation des dispositifs electronique et appareils entraînent certaines dérives environnementales et de surconsommation, le développement de la low-tech est enjeu majeur de ces prochaines années.  
+Dans un monde où la complexification de conception, de fabrication, d'utilisation et de réparation des dispositifs electroniques et appareils entraînent certaines dérives environnementales et de surconsommation, le développement de la low-tech est enjeu majeur de ces prochaines années.  
 
 Dans ce contexte et dans le cadre de notre formation au Génie Physique de l'INSA Toulouse, nous avons développé au cours de ce projet un capteur de flexion simple de conception, de réalisation et de réparation, basé sur du graphite de crayon à papier. Nous l'avons intégré au sein d'un circuit électronique interactif couplé à un microcontrôleur Arduino, pilotable grâce à un code arduino et une application Android.
 
@@ -53,7 +53,7 @@ Ce projet contient 4 différents livrables :
 ## 1. Conception du capteur graphite
 
 ### 1.1 Matériel utilisé pour ce projet
-Pour réaliser ce projet, nous avons utilisé les composants électroniques suivants :
+Pour réaliser ce projet, nous avons utilisé les composants électroniques suivant :
 * 1 capteur en graphite fabriqué avec la mine d'un crayon à papier
 * 1 carte Arduino UNO Rev 3
 * 1 module Bluetooth HC-05
