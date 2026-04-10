@@ -11,8 +11,11 @@
   - [2. Simulation electronique du circuit amplificateur avec LTSpice](#2-simulation-electronique-du-circuit-amplificateur-avec-ltspice)
     - [2.1 Principe de fonctionnement](#21-principe-de-fonctionnement)
     - [2.2 Simulations](#22-simulations)
-  - [3. Conception de la PCB avec Kicad](#3-conception-de-la-pcb-avec-kicad)
-  - [4. Réalisation de la Shield](#4-réalisation-de-la-shield)
+  - [3. Conception de la PCB avec KiCad](#3-conception-de-la-pcb-avec-kicad)
+    - [3.1 Réalisation des empreintes et de la schématique](#31-réalisation-des-empreintes-et-de-la-schématique)
+    - [3.2 Placement et routage](#32-placement-et-routage)
+    - [3.3 Visualisation 3D et vérifications](#33-visualisation-3d-et-vérifications)
+  - [4. Réalisation du shield](#4-réalisation-du-shield)
   - [5. Ecriture du code Arduino](#5-ecriture-du-code-arduino)
   - [6. Développement de l'application android couplée au code arduino avec MIT App Inventor](#6-développement-de-lapplication-android-couplée-au-code-arduino-avec-mit-app-inventor)
   - [7. Banc de test](#7-banc-de-test)
@@ -39,9 +42,9 @@ Ce projet a été effectué en différentes étapes, qui sont documentées dans 
 # Livrables
 
 Ce projet contient 4 différents livrables :  
-* Une shield PCB pour le circuit électronique de nos composants
+* Un shield Arduino pour le circuit électronique de nos composants
 * Un code Arduino qui gère les différents composants ainsi que le banc de test
-* Une application android APK qui gère l'interface avec la shield Arduino
+* Une application android APK qui gère l'interface avec le Arduino
 * Une dtasheet du capteur de flexion
 
 
@@ -117,9 +120,31 @@ $V_{ADC}=(1+\frac{R_{3}}{R_{2}})\frac{R_{1}}{R_{1}+R_{c}+R_{5}}V_{cc}$
 
 ### 2.2 Simulations
 
-## 3. Conception de la PCB avec Kicad
 
-## 4. Réalisation de la Shield
+## 3. Conception de la PCB avec KiCad
+
+Une fois que nous avons validé la simulation sur LTSpice, nous sommes passés à la réalisation du shield Arduino : le circuit imprimé (PCB). Il comportera tous les composants cités dans la section [1.1 Matériel utilisé pour ce projet](#11-matériel-utilisé-pour-ce-projet), pour la réalisation du montage amplificateur ainsi que les différents composants additionnels (module bluetooth, écran OLED...).    Pour ce faire, nous utilisons la suite logicielle KiCad 9.0. Nous sommes passés par plusieurs étapes décrites dans la section suivante.
+
+### 3.1 Réalisation des empreintes et de la schématique
+
+Tout d'abord, nous avons créé les symboles de schématique non présents dans les librairies fournies par KiCad, nous les avons associé à des empreintes et un module 3D. Nous avons ensuite réalisé le schéma électrique comme suivant :
+
+![Schématique KiCad](/Photos/Schematique%20KiCad.png)
+
+### 3.2 Placement et routage
+
+La prochaine étape a été de placer l'organisation de la disposition des composants sur la PCB. Cette étape est cruciale car il faut pouvoir placer les composants startégiquement afin que les "routes" soient ordonnées et ne se surpassent pas, et qu'on utilise le moins de via possible. Le routage des différents composants a ensuite été effectué, et un plan de masse a été intégré pour stabiliser les potentiels et réduire le nombre de "routes". Voici la représentation de notre PCB :
+
+![PCB KiCad](/Photos/PCB%20KiCad.png)
+
+### 3.3 Visualisation 3D et vérifications
+
+Pour terminer, il a fallu vérifier la conformité du routage et des vias grâce à l'outil de contrôle des règles de conception, ainsi que visulaiser la PCB en 3D pour vérifier que les composants ne se chevauchent pas et améliorer l'ergonomie de la PCB (accès facile aux différents composants). Voici la visualisation 3D :
+
+
+Une fois ces contrôles validées, la PCB est prête à être imprimée.
+
+## 4. Réalisation du shield
 
 ## 5. Ecriture du code Arduino
 
