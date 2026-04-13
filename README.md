@@ -49,6 +49,7 @@ Ce projet contient 4 différents livrables :
 * Une application android APK qui gère l'interface avec le Arduino
 * Une dtasheet du capteur de flexion
 
+---
 
 # Réalisation du projet
 
@@ -86,7 +87,7 @@ C'est ainsi que nous pouvons mesurer la variation de flexion grâce à la variat
 
 ![Image du capteur graphite](IMAGE CAPTEUR GRAPHITE)
 
-
+---
 
 ## 2. Simulation electronique du circuit amplificateur avec LTSpice
 
@@ -109,9 +110,9 @@ Pour compléter ce montage, il est nécessaire de rajouter des filtres. En effet
 ![Montage amplificateur final](/Photos/Simulation%20du%20montage%20amplificateur.png)
 
 Dans ce montage, plusieurs filtres sont en action :
-* un filtre passif avec R1 et C1, pour éviter que les bruits en courant de haute fréquence ne causent de la distorsion dans l'étage d'entrée
-* un filtre actif avec R3 et C4, pour un maximum d'efficacité sur l'amplificateur opérationnel
-* un filtre passif avec C2 et R6, pour retirer le bruit introduit en cours de traitement
+* un filtre passif avec R1 et C1, avec $f_{c}= 16$ Hz, pour éviter que les bruits en courant de haute fréquence ne causent de la distorsion dans l'étage d'entrée
+* un filtre actif avec R3 et C4, avec $f_{c}= 1,6$ Hz,pour un maximum d'efficacité sur l'amplificateur opérationnel
+* un filtre passif avec C2 et R6, avec $f_{c}= 1,6$ Hz, pour retirer le bruit introduit en cours de traitement
 
 De plus, la résistance en R5 protège l'amplificateur opérationnel contre les décharges électrostatiques, et forme avec C1 un filtre pour les bruits en tension.
 
@@ -119,9 +120,13 @@ Pour ce projet, nous avons aussi décidé de faire varier la résistance R2 avec
 
 $V_{ADC}=(1+\frac{R_{3}}{R_{2}})\frac{R_{1}}{R_{1}+R_{c}+R_{5}}V_{cc}$
 
+Et nous pouvons donc remonter à la valeur de la résistance du capteur graphite :
+
+$R_{c}=(1+\frac{R_{3}}{R_{2}})R_{1}\frac{V_{cc}}{V_{ADC}}-R_{1}-R_{5}$
 
 ### 2.2 Simulations
 
+---
 
 ## 3. Conception de la PCB avec KiCad
 
@@ -132,6 +137,13 @@ Une fois que nous avons validé la simulation sur LTSpice, nous sommes passés �
 Tout d'abord, nous avons créé les symboles de schématique non présents dans les librairies fournies par KiCad, nous les avons associé à des empreintes et un module 3D. Nous avons ensuite réalisé le schéma électrique comme suivant :
 
 ![Schématique KiCad](/Photos/Schematique%20KiCad.png)
+
+Certaines contraintes sur le choix des pins nous étaient imposées :
+- Potentiomètre digital : pin SDI => pin D11 de l'Arduino, et pin SCK => pin D13 de l'Arduino
+- Ecran OLED : pin SDA => pin A4 de l'Arduino, et pin SCK => pin A5 de l'Arduino
+- Encodeur rotatoire : pin CLK => pin D2 de l'Arduino
+
+Pour le restes des pins, nous étions libres de choisir les pins digitales ou analogiques de notre choix.
 
 ### 3.2 Placement et routage
 
@@ -145,6 +157,8 @@ Pour terminer, il a fallu vérifier la conformité du routage et des vias grâce
 
 
 Une fois ces contrôles validées, la PCB est prête à être imprimée.
+
+---
 
 ## 4. Réalisation du shield
 
@@ -166,13 +180,23 @@ Un autre problème est survenu lors des tests. Nous nous sommes rendus compte qu
 
 Une fois ces problèmes résolus, le shield Arduino a parfaitement fonctionné.
 
+---
+
 ## 5. Ecriture du code Arduino
+
+---
 
 ## 6. Développement de l'application android couplée au code arduino avec MIT App Inventor
 
+---
+
 ## 7. Banc de test
 
+---
+
 # Conclusion
+
+---
 
 # Références
 
