@@ -16,6 +16,8 @@
     - [3.2 Placement et routage](#32-placement-et-routage)
     - [3.3 Visualisation 3D et vérifications](#33-visualisation-3d-et-vérifications)
   - [4. Réalisation du shield](#4-réalisation-du-shield)
+    - [4.1 Impression de la PCB](#41-impression-de-la-pcb)
+    - [4.2 Montage et soudure](#42-montage-et-soudure)
   - [5. Ecriture du code Arduino](#5-ecriture-du-code-arduino)
   - [6. Développement de l'application android couplée au code arduino avec MIT App Inventor](#6-développement-de-lapplication-android-couplée-au-code-arduino-avec-mit-app-inventor)
   - [7. Banc de test](#7-banc-de-test)
@@ -37,7 +39,7 @@ Dans ce contexte et dans le cadre de notre formation au Génie Physique de l'INS
 Le but final de ce capteur est de pouvoir le comparer avec un capteur de flexion industriel, et pouvoir répondre à la question :
 *Ce capteur peut-il remplacer un capteur flex industriel ?*
 
-Ce projet a été effectué en différentes étapes, qui sont documentées dans ce README
+Ce projet a été effectué en différentes étapes documentées dans ce README.
 
 # Livrables
 
@@ -145,6 +147,24 @@ Pour terminer, il a fallu vérifier la conformité du routage et des vias grâce
 Une fois ces contrôles validées, la PCB est prête à être imprimée.
 
 ## 4. Réalisation du shield
+
+### 4.1 Impression de la PCB
+
+Une fois la PCB validée, nous avons pu passer à l'impression, par une méthode chimie (photolithographie). La fabrcation s'est faite en plusieurs étapes, avec l'aide de Cathy Crouzet (un grand merci à elle !) :
+1. Vérification de la PCB avec KiCad (diamètre des trous, plan de masse...)
+2. Impresssion du masque de gravure de la PCB
+3. Insolation UV d'une plaquette d'epoxy recouverte d'une couche de cuivre et d'une couche de résine photosensible
+4. Immersion de la plaquette dans un révélateur pour éliminer la résine non exposée (résine positive)
+5. Immersion de la plaquette dans du perchlorure de fer pour graver les pistes 
+6. Nettoyage de la plaquette avec de l'acétone pour éliminer la résine restante.
+
+### 4.2 Montage et soudure
+
+Une fois la PCB imprimée, nous avons pu percer les trous de notre plaquette et souder les différents composants. 
+Lors des premiers tests du shield, nous nous sommes rendu compte de la présence de courts-circuits sur la plaquette, dûs à un problème lors de la fabrication. Nous avons donc gratté avec un cuteur pour supprimer ces connexions indésirables.
+Un autre problème est survenu lors des tests. Nous nous sommes rendus compte que nou avions relié les pins TX et RX du modules bluetooth aux pins 0 et 1 de l'Arduino, réservées à la communication par port série. Nous avons donc coupé ces routes et rajouté des fils pour les relier aux pins 7 et 8 qui etaient libres (à nouveau un grand merci, à Jérémie Grisolia pour nous avoir aidé à régler ces problèmes)
+
+Une fois ces problèmes résolus, le shield Arduino a parfaitement fonctionné.
 
 ## 5. Ecriture du code Arduino
 
