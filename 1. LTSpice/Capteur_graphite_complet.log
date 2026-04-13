@@ -1,0 +1,33 @@
+Circuit: * U:\Documents\Projet capteur\LTSpice\Capteur_graphite_complet.asc
+
+Direct Newton iteration for .op point succeeded.
+.step r2=1000
+.step r2=1400
+.step r2=1800
+.step r2=2200
+.step r2=2600
+.step r2=3000
+.step r2=3400
+.step r2=3800
+.step r2=4200
+.step r2=4600
+.step r2=5000
+
+Date: Tue Feb 10 10:41:24 2026
+Total elapsed time: 4.621 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 41336
+traniter = 41314
+tranpoints = 20658
+accept = 13286
+rejected = 7372
+matrix size = 16
+fillins = 5
+solver = Normal
+Avg thread counts: 1.0/1.1/1.1/1.0
+Matrix Compiler1: 728 bytes object code size  0.4/0.3/[0.1]
+Matrix Compiler2: 1.30 KB object code size  0.2/0.3/[0.2]
+
