@@ -101,16 +101,19 @@ void loop(){
   get_encodButton();
   OLED_manage_menu();
   if (abs(encoderPos % 3) == 1 && measActive) {
+    delay(200);
     Serial.print("Graph meas : ");
     graphiteMe = graphiteMeas();
     Serial.println(graphiteMe);
     Serial.print("Flex meas : ");
     flexMe = flexMeas();
-    Serial.println(flexMe);
-    mySerial.print(graphiteMe);
+    //Serial.println(flexMe);
+    mySerial.print(graphiteMe, 2);
     mySerial.print(";");
-    mySerial.println(flexMe);
-    delay(100);
+    mySerial.print(flexMe, 2);
+    mySerial.print("\n");
+    //mySerial.println("1.23;4.56");
+    
   }
 /*
   //partie bluetooth
@@ -207,7 +210,7 @@ void calibration(){
   V_anal = V_dig*5.0/1023.0;
   Serial.print("V_anal initial : ");
   Serial.println(V_anal);
-  while (V_anal>2.5){
+  while (V_anal>2.5 && potValue < 256){
     setPotWiper(pot0, potValue); 
     potValue = potValue + 1;
     V_dig = analogRead(A0);
@@ -250,11 +253,6 @@ void OLED_InverseColor(bool Inverse) {
 void OLED_manage_menu(){
   int currentState = abs(encoderPos % 3);
 
-  // ← NOUVEAU : envoi Bluetooth seulement sur changement d'état
-  if (currentState != lastMenuState) {
-    lastMenuState = currentState;
-    mySerial.println(currentState + 1);
-  }
   switch (currentState){
     case 0 :
       ecranOLED.clearDisplay();
@@ -271,6 +269,8 @@ void OLED_manage_menu(){
       ecranOLED.println(" >Meas off");
       ecranOLED.display();
       if (encodIncr != lastButtonValue){
+        Serial.println("case1");
+        mySerial.println(1);
         calibration();
         lastButtonValue = encodIncr;
       }
@@ -291,8 +291,9 @@ void OLED_manage_menu(){
       ecranOLED.display();
       
       if (encodIncr != lastButtonValue){
+        mySerial.println(2); 
         Serial.println("case2");
-        measActive = true;  
+        measActive = true; 
         lastButtonValue = encodIncr;
       }
       break;
@@ -311,6 +312,7 @@ void OLED_manage_menu(){
       OLED_InverseColor(false);
       ecranOLED.display();
       if (encodIncr != lastButtonValue){
+        mySerial.println(3);
         measActive = false; 
         Serial.println("case3");
         lastButtonValue = encodIncr;
