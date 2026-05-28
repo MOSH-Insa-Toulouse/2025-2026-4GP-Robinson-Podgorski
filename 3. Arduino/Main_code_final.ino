@@ -1,9 +1,9 @@
 //partie bluetooth
 #include <SoftwareSerial.h>
-#define rxPin 7 //Broche 7 en tant que RX, � raccorder sur TX du HC-05
-#define txPin 8 //Broche 8 en tant que TX, � raccorder sur RX du HC-05
+#define rxPin 7 //Broche 7 en tant que RX,   raccorder sur TX du HC-05
+#define txPin 8 //Broche 8 en tant que TX,   raccorder sur RX du HC-05
 #define baudrate 9600
-SoftwareSerial mySerial(rxPin ,txPin); //D�finition du software serial
+SoftwareSerial mySerial(rxPin ,txPin); //D finition du software serial
 
 
 //partie pot digital
@@ -218,7 +218,7 @@ void calibration(){
     Serial.print("V_anal : ");
     Serial.println(V_anal);
   }
-  mySerial.println(resistanceWB);  // Envoi de la valeur du potnetiomètre à l'appli
+  mySerial.println(resistanceWB);  // Envoi de la valeur du potentiomètre à l'appli
   Serial.println("Fin calibration");
 }
 

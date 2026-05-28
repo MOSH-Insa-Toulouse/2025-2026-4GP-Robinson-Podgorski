@@ -184,11 +184,63 @@ Une fois ces problèmes résolus, le shield Arduino a parfaitement fonctionné.
 
 ## 5. Ecriture du code Arduino
 
----
+Le code Arduino comprend plusieurs fonctions contrôlant les différents modules de notre PCB. Les différents modules sont au préalable calibrés sur les bons pins.
+
+### 5.1 Configuration de chaque module
+
+On associe des pins à chaque module pour communiquer.
+
+### 5. Le setup (setup())
+
+Cette fonction à l'exécution du code :
+* ouvre le canal de transmission avec le module Bluetooth avec un Baud rate de 9600.
+* met le potentiomètre digital en veille
+* Déclare les canaux de la clock, des datas et du switch de l'encodeur rotatoire comme des canaux d'entrée et active les pull-ups de canaux de la clock et des datas pour garantir la fiabilité des valeurs
+* active le protocole SPI pour lire rapidement les données et règle l'horloge
+* déclenche l'interruption matérielle en cas de front montant pour lire la valeur de la position de l'encodeur rotatoire
+* Initialise l'écran OLED
+
+### 5.1 La boucle d'exécution (loop())
+
+### 5.2 Le réglage du potentiomètre (setPotWiper(int addr, int pos))
+
+Cette fonction règle la valeur du potentiomètre en fonction de la position et calcule la résistance associée et l'affiche de le moniteur Serial.
+
+### 5.3 La mesure de le résistance du capteur graphite (graphiteMeas())
+
+On mesure une valeur de tension numérique aux bornes du capteur graphite entre 0 et 1023. On la convertit en tension analogique entre 0 et 5V et on calcule la résistance à partir de cette tension.
+
+### 5.4 La mesure de la résistance du flex sensor (flexMeas())
+
+Le principe de calcul est le même que celui utilisé pour le capteur graphite mais appliqué dans ce cas au flex sensor. 
+
+### 5.5 L'appui sur le bouton (get_encodButton())
+
+Cette fonction détecte lorsque le bouton de l'encodeur rotatoire est pressé et filtre les faux-déclenchements (anti-rebonds)
+
+### 5.6 La rotation de l'encodeur rotatoire (get_encodPos())
+
+Cette fonction détecte le sens de rotation de l'encodeur rotatoire et met à jour sa position.
+
+### 5.7 La calibration du potentiomètre numérique (calibration())
+
+Cette fonction calibre la valeur du potentiomètre numérique pour déterminer une valeur de tension aux bornes du capteur en graphite soit de 2,5 V (la valeur médiane). La valeur du potentiomètre est également transférée à l'application via le module Bluetooth.
+
+### 5.8 La construction de l'écran OLED (set_OLED_screen(byte tailleDeCaractere) et OLED_InverseColor(bool Inverse))
+
+Ces fonctions initialisent l'écran OLED aux dimensions souhaitées et écrivent les textes en noir sur fond blanc, respectivement.
+
+### 5.9 L'utilisation de l'écran OLED
+
+Cette fonction affiche le menu selon la position de l'encodeur (Calibration, Meas on ou Meas off) et exécute l'action lorsqu'on appuise sur le bouton. Les données sont également envoyées à l'application.
+
+### 5.10 La fonction de rafraichissement (loop())
+
+Cette fonction lit la position de l'encodeur pour connaître la position du curseur sur le menu OLED, le gère, fait des mesures de réssitances du capteur graphite et du flex sensor si le curseur est sur l'onglet "Meas on" et envoue ces données à l'application via la Bluetooth.
 
 ## 6. Développement de l'application android couplée au code arduino avec MIT App Inventor
 
----
+
 
 ## 7. Banc de test
 
