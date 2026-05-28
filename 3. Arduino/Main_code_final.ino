@@ -99,7 +99,7 @@ void setup() {
   pinMode(encoderPin_DT, INPUT); 
   digitalWrite(encoderPin_DT, HIGH);       
 
-  attachInterrupt(0, get_encodPos, RISING); //interruption sur la broche 2 (CLK) pour la gestion de la position de l'encodeur rotatoire
+  attachInterrupt(0, get_encodPos, RISING); // Interruption sur la broche 2 (CLK) pour la gestion de la position de l'encodeur rotatoire
 
 
 
