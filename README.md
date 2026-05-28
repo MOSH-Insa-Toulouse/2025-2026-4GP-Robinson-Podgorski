@@ -230,7 +230,7 @@ Cette fonction calibre la valeur du potentiomètre numérique pour déterminer u
 
 Ces fonctions initialisent l'écran OLED aux dimensions souhaitées et écrivent les textes en noir sur fond blanc, respectivement.
 
-### 5.9 L'utilisation de l'écran OLED
+### 5.9 L'utilisation de l'écran OLED (OLED_manage_menu())
 
 Cette fonction affiche le menu selon la position de l'encodeur (Calibration, Meas on ou Meas off) et exécute l'action lorsqu'on appuise sur le bouton. Les données sont également envoyées à l'application.
 
