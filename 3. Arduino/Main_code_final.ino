@@ -1,42 +1,54 @@
-//partie bluetooth
+/*
+==============================================
+=============== Projet Capteur ===============
+==============================================
+Auteurs: Romain PODGORSKI, Yanis ROBINSON
+Last update: 29/05/2025
+*/
+
+//====================================================
+//==================== Libraries =====================
+//====================================================
+
 #include <SoftwareSerial.h>
-#define rxPin 7 //Broche 7 en tant que RX,   raccorder sur TX du HC-05
-#define txPin 8 //Broche 8 en tant que TX,   raccorder sur RX du HC-05
+#define rxPin 7 //Broche 7 en tant que RX, à raccorder sur TX du HC-05
+#define txPin 8 //Broche 8 en tant que TX, à raccorder sur RX du HC-05
 #define baudrate 9600
-SoftwareSerial mySerial(rxPin ,txPin); //D finition du software serial
-
-
-//partie pot digital
+SoftwareSerial mySerial(rxPin ,txPin); //Définition du software serial
 #include <SPI.h>
+#include <Adafruit_SSD1306.h>
 
-const byte csPin           = 10;      // MCP42100 chip select pin
-const int  maxPositions    = 256;     // wiper can move from 0 to 255 = 256 positions
-const long rAB             = 92500;   // 100k pot resistance between terminals A and B, 
-                                      // mais pour ajuster au multimètre, je mets 92500
-const byte rWiper          = 125;     // 125 ohms pot wiper resistance
-const byte pot0            = 0x11;    // pot0 addr // B 0001 0001
-const byte pot0Shutdown    = 0x21;    // pot0 shutdown // B 0010 0001
+
+//====================================================
+//============= Declarations de variables ============
+//====================================================
+
+//Partie potentiomètre digital
+const byte csPin           = 10;      
+const int  maxPositions    = 256;     
+const long rAB             = 92500;   
+const byte rWiper          = 125;
+const byte pot0            = 0x11;    
+const byte pot0Shutdown    = 0x21;    
 int V_dig;
 double V_anal;
 int potValue;
 
-//encodeur rotatoire
+//Partie encodeur rotatoire
 #define encoderPin_SW 5
 #define encoderPin_CLK 2
 #define encoderPin_DT 4
-int buttonState; // the current reading from the input pin
-int lastButtonState = HIGH; // the previous reading from the input pin
+int buttonState; 
+int lastButtonState = HIGH; 
 int encodIncr = 0;
-long lastDebounceTime = 0; // the last time the output pin was toggled
-long debounceDelay = 50; // the debounce time; increase if the output flickers
+long lastDebounceTime = 0; 
+long debounceDelay = 50; 
 volatile int encoderPos = 0;
 volatile int lastButtonValue =0;
-long lastPosTime = 0; // the last time the output pin was toggled
-long posDelay = 100; // the debounce time; increase if the output flickers
+long lastPosTime = 0; 
+long posDelay = 100; 
 
-//partie ecran
-#include <Adafruit_SSD1306.h>
-
+//Partie ecran OLED
 #define nombreDePixelsEnLargeur 128         // Taille de l'écran OLED, en pixel, au niveau de sa largeur
 #define nombreDePixelsEnHauteur 64          // Taille de l'écran OLED, en pixel, au niveau de sa hauteur
 #define brocheResetOLED         -1          // Reset de l'OLED partagé avec l'Arduino (d'où la valeur à -1, et non un numéro de pin)
@@ -47,7 +59,7 @@ int lastMenuState = -1;
 
 Adafruit_SSD1306 ecranOLED(nombreDePixelsEnLargeur, nombreDePixelsEnHauteur, &Wire, brocheResetOLED);
 
-//variables ampli
+//Variables ampli
 const float R1 = 100000.0;
 const float R3 = 100000.0;
 float resistanceWB = 10000.0 ;
@@ -55,97 +67,90 @@ const float R5 = 10000.0;
 const float Vcc = 5.0;
 const float R_DIV = 47000.0;
 
-//variables de mesure 
+//Variables de mesure 
 float graphiteMe = 0.0;
 float flexMe = 0.0;
+
+//====================================================
+//====================== Setup =======================
+//====================================================
 
 
 void setup() {
   
-  //partie bluetooth
+  //Partie bluetooth
   pinMode(rxPin,INPUT);
   pinMode(txPin,OUTPUT);
     
   mySerial.begin(baudrate);
   Serial.begin(baudrate);
 
-  //partie pot digital
-  digitalWrite(csPin, HIGH);        // chip select default to de-selected
-  pinMode(csPin, OUTPUT);           // configure chip select as output
+  //Partie potentiomètre digital
+  digitalWrite(csPin, HIGH);        
+  pinMode(csPin, OUTPUT);           
 
-  //partie encodeur rotatoire
+  //Partie encodeur rotatoire
   pinMode(encoderPin_SW, INPUT);
-  SPI.begin();                //à modifier pour pouvoir gérer le gain 
+  SPI.begin();                
   
   pinMode(encoderPin_CLK, INPUT); 
-  digitalWrite(encoderPin_CLK, HIGH);       // turn on pullup resistor
+  digitalWrite(encoderPin_CLK, HIGH);       
 
   pinMode(encoderPin_DT, INPUT); 
-  digitalWrite(encoderPin_DT, HIGH);       // turn on pullup resistor
+  digitalWrite(encoderPin_DT, HIGH);       
 
-  attachInterrupt(0, get_encodPos, RISING);
+  attachInterrupt(0, get_encodPos, RISING); //interruption sur la broche 2 (CLK) pour la gestion de la position de l'encodeur rotatoire
 
 
 
-	//partie ecran
-	set_OLED_screen(tailleDeCaractereIN);
+	//Partie ecran
+	set_OLED_screen(tailleDeCaractereIN); // Initialisation de l'écran OLED et affichage du menu
   ecranOLED.display();                            // Transfert le buffer à l'écran
   delay(2000);
-
-  //calibration();
 }
+
+
+//====================================================
+//==================== Main Loop =====================
+//====================================================
 
 
 void loop(){
 
-  get_encodButton();
-  OLED_manage_menu();
-  if (abs(encoderPos % 3) == 1 && measActive) {
+  get_encodButton(); // Récupération de l'état du bouton de l'encodeur rotatoire
+  OLED_manage_menu(); // Gestion de l'affichage du menu sur l'écran OLED en fonction de la position de l'encodeur rotatoire et des appuis sur son bouton
+  if (abs(encoderPos % 3) == 1 && measActive) { //On fait les mesures que si on est dans le menu "Meas on" et que les mesures sont actives
     delay(200);
+    // Récupération des mesures de résistance du graphite et du flex, affichage dans le port série
     Serial.print("Graph meas : ");
     graphiteMe = graphiteMeas();
     Serial.println(graphiteMe);
     Serial.print("Flex meas : ");
     flexMe = flexMeas();
-    //Serial.println(flexMe);
+    Serial.println(flexMe);
+    // Envoi des mesures de résistance du graphite et du flex à l'appli via bluetooth, au format "graphite;flex\n"
     mySerial.print(graphiteMe, 2);
     mySerial.print(";");
     mySerial.print(flexMe, 2);
     mySerial.print("\n");
-    //mySerial.println("1.23;4.56");
     
   }
-/*
-  //partie bluetooth
-      int i = 0; 
-	char someChar[32] ={0};
-	//when characters arrive over the serial port...
-
-	while (Serial.available()) {
-	   do{
-		someChar[i++] = Serial.read();
-		delay(3);		
-	   }while (Serial.available() > 0);
-	   
-	   //mySerial.println(someChar); 
-	   Serial.println(someChar); 
-	}
-	while (mySerial.available()) {
-		Serial.print((char)mySerial.read());
-	}
-*/
 }
 
 
+//====================================================
+//==================== Functions =====================
+//====================================================
 
-void setPotWiper(int addr, int pos) {
-  pos = constrain(pos, 0, 255);            // limit wiper setting to range of 0 to 255
-  digitalWrite(csPin, LOW);                // select chip
-  SPI.transfer(addr);                      // configure target pot with wiper position
+//================== Fonction potentiomètre digital ====================
+
+void setPotWiper(int addr, int pos) {  // Règlage du potentiomètre digital et récupération de la résistance correspondante
+  pos = constrain(pos, 0, 255);            
+  digitalWrite(csPin, LOW);                
+  SPI.transfer(addr);                     
   SPI.transfer(pos);
-  digitalWrite(csPin, HIGH);               // de-select chip
+  digitalWrite(csPin, HIGH);              
 
-  // print pot resistance between wiper and B terminal
   resistanceWB = ((rAB * pos) / maxPositions ) + rWiper;
   Serial.print("Wiper position: ");
   Serial.print(pos);
@@ -154,7 +159,7 @@ void setPotWiper(int addr, int pos) {
   Serial.println(" ohms");
 }
 
-
+//=============== Fonctions de mesures des résistances =================
 float graphiteMeas(){
   float V_ADC_graph = analogRead(A0);
   float V_graph = V_ADC_graph*5.0/1023.0;
@@ -169,8 +174,9 @@ float flexMeas(){
   return R_flex;
 }
 
+//==================== Fonctions encodeur rotatoire ======================
 
-void get_encodButton(){
+void get_encodButton(){   // Récupération de l'état du bouton de l'encodeur rotatoire, avec un debouncing logiciel
   int reading = digitalRead(encoderPin_SW);
   if (reading != lastButtonState) {
     lastDebounceTime = millis(); // reset the debouncing timer
@@ -185,7 +191,7 @@ void get_encodButton(){
   lastButtonState = reading;
 }
 
-void get_encodPos(){
+void get_encodPos(){ // Récupération de la position de l'encodeur rotatoire, avec un debouncing logiciel
   static int prev_CLK = HIGH ;
   int new_CLK = digitalRead(encoderPin_CLK);
   if (new_CLK == HIGH && new_CLK != prev_CLK) {
@@ -200,9 +206,8 @@ void get_encodPos(){
   prev_CLK = new_CLK;
 }
 
-
-void calibration(){
-  potValue = 0;
+//===================== Fonction de calibration =======================
+void calibration(){   // Recherche de la position du potentiomètre digital pour obtenir une tension de 2.5V à l'entrée de l'amplificateur, et envoi de la résistance correspondante à l'appli via bluetooth
   Serial.println("Calibration en cours");
   setPotWiper(pot0, potValue); 
   delay(50);
@@ -210,7 +215,7 @@ void calibration(){
   V_anal = V_dig*5.0/1023.0;
   Serial.print("V_anal initial : ");
   Serial.println(V_anal);
-  while (V_anal>2.5 && potValue < 256){
+  while (V_anal>2.5 && potValue < 256){ // S'arrete si la tension est inférieure à 2.5V ou si on a atteint la position maximale du potenti
     setPotWiper(pot0, potValue); 
     potValue = potValue + 1;
     V_dig = analogRead(A0);
@@ -222,7 +227,9 @@ void calibration(){
   Serial.println("Fin calibration");
 }
 
-void set_OLED_screen(byte tailleDeCaractere){
+
+//================== Fonctions gestion ecran OLED ====================
+void set_OLED_screen(byte tailleDeCaractere){ // Initialisation de l'écran OLED et affichage du menu
 	if(!ecranOLED.begin(SSD1306_SWITCHCAPVCC, adresseI2CecranOLED))
     while(1);
 	ecranOLED.clearDisplay();                                   // Effaçage de l'intégralité du buffer
@@ -241,7 +248,7 @@ void set_OLED_screen(byte tailleDeCaractere){
   ecranOLED.display();
 }
 
-void OLED_InverseColor(bool Inverse) {
+void OLED_InverseColor(bool Inverse) { // Permet d'inverser les couleurs du texte et du fond pour faire ressortir le menu sélectionné
   if (Inverse == true) {
     ecranOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);       // (Couleur du texte en noir et couleur du fond en blanc)
   }
@@ -250,7 +257,7 @@ void OLED_InverseColor(bool Inverse) {
   }
 }
 
-void OLED_manage_menu(){
+void OLED_manage_menu(){ // Fonciton principale de gestion du menu sur l'écran OLED, qui affiche le menu en fonction de la position de l'encodeur rotatoire et des appuis sur son bouton, et qui envoie les commandes correspondantes à l'appli via bluetooth
   int currentState = abs(encoderPos % 3);
 
   switch (currentState){

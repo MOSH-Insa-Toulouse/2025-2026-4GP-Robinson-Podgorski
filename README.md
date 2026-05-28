@@ -245,7 +245,7 @@ L'application s'articule en 5 points différents :
 * L'ouverture du canal entre l'Arduino et l'appli via la connexion Bluetooth
 * La récupération des données brutes
 * Le tri des données en fonction du chiffre reçu (1 pour le calibrage, 2 pour la réception et l'affichage des mesures de résistance, 3 pour l'arrêt de la transmission et de l'affichage des mesures de résistance)
-* L'afffichage des données sur la faxce avant, dans des spins box pour le calibrage et les valeurs de résistance en direct du capteur graphite et du flex sensor et sur des graphes des valeurs de résistance du capteur graphite et du flex sensor en fonction du temps
+* L'afffichage des données sur la face avant, dans des spins box pour le calibrage et les valeurs de résistance en direct du capteur graphite et du flex sensor et sur des graphes des valeurs de résistance du capteur graphite et du flex sensor en fonction du temps
 * La fermeture du canal
 
 
