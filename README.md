@@ -261,12 +261,17 @@ L'application s'articule en 5 points différents :
 * L'afffichage des données sur la face avant, dans des spins box pour le calibrage et les valeurs de résistance en direct du capteur graphite et du flex sensor et sur des graphes des valeurs de résistance du capteur graphite et du flex sensor en fonction du temps
 * La fermeture du canal
 
+L'utilisateur peut intéragir avec l'appli grâce à la face avant. La connexion entre l'Arduino et l'appli est notamment établie lorsque l'utilisateur clique sur le bouton "Connexion ARDUINO Bluetooth".
+
+![Face avant appli](/Photos/Face_avant_app.png)
 
 ## 7. Banc de test
 
 Nous avons utilisé un banc de test pour caractériser notre capteur graphite. Ce banc de test est un cylindre qui possède différentes valeurs de rayon de 1 à 2,5 cm. Nous avons dès lors calculé la variation de résistance $\frac{\Delta R}{R_0}$ en fonction de la déformation $\epsilon = \frac{e}{D}$, pour une épaisseur de papier e = 0,02 cm.
 
-On obtient des courbes de caractérisations pour une déformation en tension et en compression avec différents types de crayons à papier.
+![Banc de test](/Photos/Banc_de_test.png)
+
+Nous obtenons des courbes de caractérisations pour une déformation en tension et en compression avec différents types de crayons à papier.
 
 ![Variation des résistances en fonction de la déformation en tension](/Photos/Variation_de_la_résistance_en_fonction_de_la_déformation_en_tension.png)
 
@@ -286,9 +291,16 @@ La création d'un capteur de la première étape à l'étape de fin a été d'un
 Nous avons eu l'occasion de toucher à divers outils pour la création de notre capteur (LTSPice, KiCad, Arduino, MIT App Inventor). En somme, ce projet est un avant-goût du travail actuel d'un ingénieur.
 
 En outre, notre capteur est fonctionnel et simple d'utilisation. Les valeurs obtenues sont cohérentes,  et nous avons pu remplir l'ensemble du cahier des charges.
+
+De plus, les capteurs graphites fabriqués ont une meilleure sensibilité que celle des capteurs industriellles flex sensor. Néanmoins, leur durée de vie est très faible devant celle du flex sensor. Ainsi, les capteurs graphites ne sont pas industrialisables.
+
+![Comparaison des capteurs](/Photos/Comparaison%20des%20capteurs.png)
+
 ---
 
 # Références
+
+
 
 # Contacts
 
