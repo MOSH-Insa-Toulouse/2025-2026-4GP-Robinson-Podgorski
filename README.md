@@ -126,6 +126,21 @@ $R_{c}=(1+\frac{R_{3}}{R_{2}})R_{1}\frac{V_{cc}}{V_{ADC}}-R_{1}-R_{5}$
 
 ### 2.2 Simulations
 
+Afin de vérifier l'efficience de notre circuit amplificateur, nous l'avons simulé sur le logiciel LTSpice. Voici le résultat obtenu :
+
+![Simularion en régime transitoire](/Photos/Simu_transitoire.png)
+
+Le signal est bien amplifié de 500 mV à 1,00 V et peut donc être interprété par l'ARDUINO.
+
+Nous avons également simulé un signal alternatif pour vérifier l'efficience des filtres présents sur notre circuit. Le résultat obtenu est le suivant :
+
+![Simulation en régime alternatif](/Photos/Simu_ac.png)
+
+On observe trois filtrages successifs du signal initial, correspondants au trois filtres de notre système. De plus, le signal est atténué d'environ 70dB à 50 Hz, comme souhaité. 
+
+Ainsi, notre simulation est réussi.
+
+
 ---
 
 ## 3. Conception de la PCB avec KiCad
@@ -153,7 +168,7 @@ La prochaine étape a été de placer l'organisation de la disposition des compo
 
 ### 3.3 Visualisation 3D et vérifications
 
-Pour terminer, il a fallu vérifier la conformité du routage et des vias grâce à l'outil de contrôle des règles de conception, ainsi que visulaiser la PCB en 3D pour vérifier que les composants ne se chevauchent pas et améliorer l'ergonomie de la PCB (accès facile aux différents composants). Voici la visualisation 3D :
+Pour terminer, il a fallu vérifier la conformité du routage et des vias grâce à l'outil de contrôle des règles de conception, ainsi que visulaiser la PCB en 3D pour vérifier que les composants ne se chevauchent pas et améliorer l'ergonomie de la PCB (accès facile aux différents composants).
 
 
 Une fois ces contrôles validées, la PCB est prête à être imprimée.
@@ -249,6 +264,19 @@ L'application s'articule en 5 points différents :
 
 ## 7. Banc de test
 
+Nous avons utilisé un banc de test pour caractériser notre capteur graphite. Ce banc de test est un cylindre qui possède différentes valeurs de rayon de 1 à 2,5 cm. Nous avons dès lors calculé la variation de résistance $\frac{\Delta R}{R_0}$ en fonction de la déformation $\epsilon = \frac{e}{D}$, pour une épaisseur de papier e = 0,02 cm.
+
+On obtient des courbes de caractérisations pour une déformation en tension et en compression avec différents types de crayons à papier.
+
+![Variation des résistances en fonction de la déformation en tension](/Photos/Variation_de_la_résistance_en_fonction_de_la_déformation_en_tension.png)
+
+![Variation des résistances en fonction de la déformation en compression](/Photos/Variation_de_la_résistance_en_fonction_de_la_déformation_en_compression.png)
+
+Dans le cas d'une déformation en tension, plus la déformation est grande, plus la variation relative est grande. L'inverse se produit en compression. Cela s'explique par le fait que les atomes s'éloignent en tension ce qui augmente la résistance, à l'inverse de la compression.
+
+En outre, plus le crayon est gras, plus la variation relative est faible en tension (HB, 2B, 4B) ; les crayons gras contiennent plus d'atomes de carbone.
+
+Les résultats obtenus dépendent fortement de la quantité de crayon déposé sur le papier. Ainsi, les résultats obtenus ne sont pas reproductibles.
 
 ---
 
