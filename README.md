@@ -21,6 +21,7 @@
   - [5. Ecriture du code Arduino](#5-ecriture-du-code-arduino)
   - [6. Développement de l'application android couplée au code arduino avec MIT App Inventor](#6-développement-de-lapplication-android-couplée-au-code-arduino-avec-mit-app-inventor)
   - [7. Banc de test](#7-banc-de-test)
+  - [8. Datasheet](#8-Datasheet)
 - [Conclusion](#conclusion)
 - [Références](#références)
 - [Contacts](#contacts)
@@ -285,6 +286,12 @@ Les résultats obtenus dépendent fortement de la quantité de crayon déposé s
 
 ---
 
+# Datasheet
+
+Nous avons réalisé une datasheet du capteur graphite. Elle est disponible sur notre github.
+
+---
+
 # Conclusion
 
 La création d'un capteur de la première étape à l'étape de fin a été d'un grand enrichissement.
@@ -297,10 +304,6 @@ De plus, les capteurs graphites fabriqués ont une meilleure sensibilité que ce
 ![Comparaison des capteurs](/Photos/Comparaison%20des%20capteurs.png)
 
 ---
-
-# Références
-
-
 
 # Contacts
 
